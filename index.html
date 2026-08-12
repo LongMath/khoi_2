@@ -249,7 +249,8 @@
                 const studentAns = document.getElementById(`ans_${safeId}`).value.trim();
                 
                 // So sánh an toàn (đưa về chữ thường để tránh lỗi khi người dùng gõ hoa/thường)
-                const isCorrect = (studentAns.toLowerCase() === String(q.correctAnswer).trim().toLowerCase());
+                const allowedAnswers = String(q.correctAnswer).toLowerCase().split(/[,|]/).map(item => item.trim());
+                const isCorrect = allowedAnswers.includes(studentAns.toLowerCase());
 
                 if (isCorrect) correctCount++;
 
