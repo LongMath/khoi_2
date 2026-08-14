@@ -43,7 +43,6 @@
 
   .grid-bg{background-color: var(--paper);}
 
-  /* HEADER CHUẨN MẪU */
   header{
     position:sticky; top:0; z-index:100;
     background:rgba(12,32,80,0.94);
@@ -55,17 +54,16 @@
     padding:10px 24px; max-width:1180px; margin:0 auto;
   }
   
-  /* Logo chuẩn dạng hình quyển sách kết hợp chữ B đúng mẫu yêu cầu */
+  /* Logo chuẩn chỉnh giống mẫu template gốc */
   .logo-box {
-    display:flex; align-items:center; gap:10px; text-decoration:none;
+    display:flex; align-items:center; gap:12px; text-decoration:none;
   }
   .logo-icon-svg {
-    width: 36px; height: 36px; display: block; flex-shrink: 0;
+    width: 42px; height: 38px; display: block; flex-shrink: 0;
   }
   .logo-texts { display:flex; flex-direction:column; justify-content:center; }
-  .logo-title { font-family:'Baloo 2'; font-weight:800; font-size:16px; color:#fff; letter-spacing:.04em; line-height:1.1; }
-  .logo-sub { font-family:'JetBrains Mono'; font-weight:700; font-size:9px; color:var(--gold); letter-spacing:.06em; text-transform:uppercase; margin-top:2px; display:flex; align-items:center; gap:4px; }
-  .logo-sub::before, .logo-sub::after { content:"—"; color:var(--gold); }
+  .logo-title { font-family:'Baloo 2'; font-weight:800; font-size:17px; color:#fff; letter-spacing:.03em; line-height:1.1; }
+  .logo-sub { font-family:'JetBrains Mono'; font-weight:700; font-size:9.5px; color:var(--gold); letter-spacing:.05em; text-transform:uppercase; margin-top:3px; }
 
   .nav-links{display:flex; gap:26px; font-weight:600; font-size:14px; color:rgba(255,255,255,0.82);}
   .nav-links a:hover{color:var(--gold);}
@@ -87,7 +85,6 @@
   .section-head h2{font-size:clamp(26px,3vw,36px); color:var(--ink); margin-bottom:10px;}
   .section-head p{color:var(--ink-soft); font-size:15px;}
 
-  /* KHUNG LUYỆN TẬP GỌN GÀNG */
   .practice-box {
     background:#fff; border-radius:var(--radius-lg); padding:40px; box-shadow:var(--shadow-soft); border:1px solid var(--card-border);
     max-width:820px; margin:0 auto; position:relative;
@@ -102,17 +99,18 @@
 <header>
   <nav class="nav">
     <a href="#" class="logo-box">
-      <!-- SVG biểu tượng quyển sách mở có chữ B bên trong đúng mẫu yêu cầu -->
-      <svg class="logo-icon-svg" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
-        <path d="M5 10C5 9.44772 5.44772 9 6 9H17C18.1046 9 19 9.89543 19 11V31C19 31.5523 18.5523 32 18 32H6C5.44772 32 5 31.5523 5 31V10Z" stroke="#E3A038" stroke-width="2"/>
-        <path d="M35 10C35 9.44772 34.5523 9 34 9H23C21.8954 9 21 9.89543 21 11V31C21 31.5523 21.4477 32 22 32H34C34.5523 32 35 31.5523 35 31V10Z" stroke="#E3A038" stroke-width="2"/>
-        <path d="M20 9V32" stroke="#E3A038" stroke-width="1.5"/>
-        <path d="M20 7C20 6.44772 19.5523 6 19 6H15" stroke="#E3A038" stroke-width="1.5" stroke-linecap="round"/>
-        <text x="20" y="24" fill="#E3A038" font-family="'Baloo 2', sans-serif" font-weight="800" font-size="15" text-anchor="middle">B</text>
+      <!-- SVG biểu tượng quyển sách mở và chữ B vàng chuẩn nét theo template gốc -->
+      <svg class="logo-icon-svg" viewBox="0 0 46 38" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M4.5 7.5C4.5 6.94772 4.94772 6.5 5.5 6.5H16.5C18.1569 6.5 19.5 7.84315 19.5 9.5V30.5C19.5 31.0523 19.0523 31.5 18.5 31.5H5.5C4.94772 31.5 4.5 31.0523 4.5 30.5V7.5Z" stroke="#E3A038" stroke-width="2"/>
+        <path d="M41.5 7.5C41.5 6.94772 41.0523 6.5 40.5 6.5H29.5C27.8431 6.5 26.5 7.84315 26.5 9.5V30.5C26.5 31.0523 26.9477 31.5 27.5 31.5H40.5C41.0523 31.5 41.5 31.0523 41.5 30.5V7.5Z" stroke="#E3A038" stroke-width="2"/>
+        <path d="M23 6.5V31.5" stroke="#E3A038" stroke-width="2"/>
+        <path d="M23 4.5C23 3.94772 22.5523 3.5 22 3.5H18" stroke="#E3A038" stroke-width="1.5" stroke-linecap="round"/>
+        <circle cx="18" cy="5" r="1.5" fill="#E3A038"/>
+        <text x="23" y="23" fill="#E3A038" font-family="'Baloo 2', sans-serif" font-weight="800" font-size="16" text-anchor="middle">B</text>
       </svg>
       <div class="logo-texts">
         <span class="logo-title">TOÁN BÁC LONG</span>
-        <span class="logo-sub">HỌC RỘNG – HIỂU SÂU</span>
+        <span class="logo-sub">— HỌC RỘNG - HIỂU SÂU —</span>
       </div>
     </a>
     <ul class="nav-links">
@@ -189,11 +187,11 @@
             </div>
             <div id="resDetails" class="space-y-3"></div>
             
-            <!-- Khung Zalo QR chuẩn xác -->
+            <!-- Khung Zalo QR fix chuẩn link ảnh trực tiếp -->
             <div class="mt-6 p-6 bg-[#F6EFDD] rounded-xl border border-amber-200 text-center">
                 <p class="text-[#0C2050] font-bold mb-3 text-sm font-['Baloo_2']">💬 Tham gia Nhóm Zalo để nhận giải chi tiết:</p>
                 <div class="mb-3">
-                    <img src="https://raw.githubusercontent.com/LongMath/khoi_2/main/images/QR_Khoi_2.jpg" alt="QR Zalo" class="w-36 h-36 mx-auto rounded-lg shadow border bg-white p-1">
+                    <img src="https://raw.githubusercontent.com/LongMath/khoi_2/main/QR_Khoi_2.jpg" alt="QR Zalo" class="w-36 h-36 mx-auto rounded-lg shadow border bg-white p-1" onerror="this.onerror=null; this.src='QR_Khoi_2.jpg';">
                 </div>
                 <a href="https://zalo.me/g/ybsu5tpbmfsflpeeaalm" target="_blank" class="inline-block bg-emerald-600 text-white font-bold px-6 py-2.5 rounded-xl text-sm shadow transition">
                     🔗 Vào nhóm Zalo
