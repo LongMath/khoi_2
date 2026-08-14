@@ -40,22 +40,22 @@
             display:flex; align-items:center; justify-content:space-between;
             padding:10px 24px; max-width:1180px; margin:0 auto;
         }
+        
+        /* Logo chuẩn theo ảnh mẫu */
         .logo-box {
             display:flex; align-items:center; gap:12px; text-decoration:none;
         }
         .logo-icon-svg {
-            width: 42px; height: 38px; display: block; flex-shrink: 0;
+            width: 44px; height: 38px; display: block; flex-shrink: 0;
         }
         .logo-texts { display:flex; flex-direction:column; justify-content:center; }
         .logo-title { font-family:'Baloo 2'; font-weight:800; font-size:17px; color:#fff; letter-spacing:.03em; line-height:1.1; }
-        .logo-sub { font-family:'JetBrains Mono'; font-weight:700; font-size:9.5px; color:var(--gold); letter-spacing:.05em; text-transform:uppercase; margin-top:3px; }
+        .logo-sub { font-family:'JetBrains Mono'; font-weight:700; font-size:9px; color:var(--gold); letter-spacing:.04em; text-transform:uppercase; margin-top:3px; display:flex; align-items:center; gap:4px; }
+        .logo-sub::before, .logo-sub::after { content:"—"; color:var(--gold); }
 
-        .nav-links{display:flex; gap:26px; font-weight:600; font-size:14px; color:rgba(255,255,255,0.82);}
-        .nav-links a:hover{color:var(--gold);}
-        
         .btn{
             display:inline-flex; align-items:center; justify-content:center; gap:8px;
-            padding:10px 22px; border-radius:100px; font-weight:700; font-size:14px;
+            padding:10px 24px; border-radius:100px; font-weight:700; font-size:14px;
             cursor:pointer; border:none; transition:transform .15s ease, box-shadow .15s ease;
         }
         .btn-primary{background:var(--gold); color:var(--ink); box-shadow:0 10px 24px -8px rgba(227,160,56,0.55);}
@@ -64,52 +64,51 @@
 </head>
 <body class="min-h-screen pb-12">
 
-    <!-- Header chuẩn mẫu template -->
+    <!-- Header gọn gàng, bỏ menu thừa -->
     <header>
       <nav class="nav">
         <a href="#" class="logo-box">
-          <svg class="logo-icon-svg" viewBox="0 0 46 38" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <path d="M4.5 7.5C4.5 6.94772 4.94772 6.5 5.5 6.5H16.5C18.1569 6.5 19.5 7.84315 19.5 9.5V30.5C19.5 31.0523 19.0523 31.5 18.5 31.5H5.5C4.94772 31.5 4.5 31.0523 4.5 30.5V7.5Z" stroke="#E3A038" stroke-width="2"/>
-            <path d="M41.5 7.5C41.5 6.94772 41.0523 6.5 40.5 6.5H29.5C27.8431 6.5 26.5 7.84315 26.5 9.5V30.5C26.5 31.0523 26.9477 31.5 27.5 31.5H40.5C41.0523 31.5 41.5 31.0523 41.5 30.5V7.5Z" stroke="#E3A038" stroke-width="2"/>
-            <path d="M23 6.5V31.5" stroke="#E3A038" stroke-width="2"/>
-            <path d="M23 4.5C23 3.94772 22.5523 3.5 22 3.5H18" stroke="#E3A038" stroke-width="1.5" stroke-linecap="round"/>
-            <circle cx="18" cy="5" r="1.5" fill="#E3A038"/>
-            <text x="23" y="23" fill="#E3A038" font-family="'Baloo 2', sans-serif" font-weight="800" font-size="16" text-anchor="middle">B</text>
+          <!-- Logo chuẩn mẫu ảnh: Sách mở + Ngôi sao + Chữ B -->
+          <svg class="logo-icon-svg" viewBox="0 0 52 42" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M6 10C6 9.44772 6.44772 9 7 9H18C19.6569 9 21 10.3431 21 12V35C21 35.5523 20.5523 36 20 36H7C6.44772 36 6 35.5523 6 35V10Z" stroke="#E3A038" stroke-width="2"/>
+            <path d="M46 10C46 9.44772 45.5523 9 45 9H34C32.3431 9 31 10.3431 31 12V35C31 35.5523 31.4477 36 32 36H45C45.5523 36 46 35.5523 46 35V10Z" stroke="#E3A038" stroke-width="2"/>
+            <path d="M26 8V36" stroke="#E3A038" stroke-width="2"/>
+            <path d="M26 6C26 5.44772 25.5523 5 25 5H21" stroke="#E3A038" stroke-width="1.5" stroke-linecap="round"/>
+            <path d="M26 4L27.2 6.4L29.8 6.8L27.9 8.7L28.3 11.3L26 10L23.7 11.3L24.1 8.7L22.2 6.8L24.8 6.4L26 4Z" fill="#E3A038"/>
+            <text x="26" y="27" fill="#E3A038" font-family="'Baloo 2', sans-serif" font-weight="800" font-size="16" text-anchor="middle">B</text>
+            <path d="M4 12C4 10.8954 4.89543 10 6 10H17" stroke="#E3A038" stroke-width="1.5"/>
+            <path d="M48 12C48 10.8954 47.1046 10 46 10H35" stroke="#E3A038" stroke-width="1.5"/>
           </svg>
           <div class="logo-texts">
             <span class="logo-title">TOÁN BÁC LONG</span>
-            <span class="logo-sub">— HỌC RỘNG - HIỂU SÂU —</span>
+            <span class="logo-sub">HỌC RÔNG - HIỂU SÂU</span>
           </div>
         </a>
-        <ul class="nav-links">
-          <li><a href="#luyentap">Luyện tập</a></li>
-          <li><a href="#dangky">Đăng ký</a></li>
-        </ul>
         <a href="#luyentap" class="btn btn-primary">Vào làm bài</a>
       </nav>
     </header>
 
-    <!-- Main Title -->
+    <!-- Tiêu đề chính -->
     <div class="max-w-3xl mx-auto mt-10 text-center px-4">
         <span class="inline-block font-['JetBrains_Mono'] font-bold text-xs uppercase tracking-wider text-amber-800 bg-amber-500/15 px-3 py-1 rounded-full mb-3">🎯 HỆ THỐNG LUYỆN TẬP TRỰC TUYẾN</span>
         <h1 class="text-3xl font-bold mb-2 font-['Baloo_2'] text-[#0C2050]">Kho đề luyện tập toàn diện đã sẵn sàng</h1>
         <p class="text-slate-600">Chọn cấu hình bài thi, nhập tên của con và bắt đầu rèn luyện tư duy toán học.</p>
     </div>
 
-    <!-- Trạng thái kết nối (Chỉ giữ lại duy nhất 1 thông báo gọn gàng ở đây) -->
-    <div class="max-w-3xl mx-auto mt-4 px-4 text-center">
-        <span id="statusBadge" class="inline-flex items-center bg-amber-100 text-amber-900 text-xs font-bold px-4 py-1.5 rounded-full shadow-sm">
-            <svg class="animate-spin -ml-1 mr-2 h-4 w-4 text-amber-900" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"><circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle><path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path></svg>
-            Đang kết nối dữ liệu kho đề...
-        </span>
-    </div>
-
-    <!-- Khu vực Nhập Tên Học Sinh -->
-    <div id="selectionArea" class="max-w-3xl mx-auto mt-4 bg-white p-8 rounded-2xl shadow-sm border border-slate-200 transition-all opacity-50 pointer-events-none mx-4">
-        <h2 class="text-slate-800 font-bold mb-6 text-2xl text-center font-['Baloo_2']">👨‍🎓 Thông tin làm bài:</h2>
+    <!-- Khu vực Nhập Tên Học Sinh (Đã tích hợp trạng thái và màu sắc đồng bộ hoàn toàn) -->
+    <div id="selectionArea" class="max-w-3xl mx-auto mt-6 bg-white p-8 rounded-2xl shadow-sm border border-slate-200 transition-all opacity-50 pointer-events-none mx-4">
+        
+        <!-- Trạng thái kết nối nằm gọn bên trong khung -->
+        <div class="flex justify-between items-center mb-6 border-b pb-4">
+            <h2 class="text-slate-800 font-bold text-2xl font-['Baloo_2']">👨‍🎓 Thông tin làm bài:</h2>
+            <span id="statusBadge" class="inline-flex items-center bg-amber-100 text-amber-900 text-xs font-bold px-3.5 py-1 rounded-full shadow-sm">
+                <svg class="animate-spin -ml-1 mr-2 h-4 w-4 text-amber-900" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"><circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle><path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path></svg>
+                Đang kết nối kho đề...
+            </span>
+        </div>
         
         <div class="flex flex-col md:flex-row gap-4 justify-center items-center mb-8">
-            <input type="text" id="studentNameInput" placeholder="Nhập tên của con (VD: Linh Đan)..." class="w-full md:w-2/3 border-2 border-amber-300 rounded-xl px-4 py-3 text-lg focus:outline-none focus:border-amber-500 transition bg-[#FBF6EC]">
+            <input type="text" id="studentNameInput" placeholder="Nhập tên của con (VD: Linh Đan)..." class="w-full md:w-2/3 border-2 border-amber-300 rounded-xl px-4 py-3 text-lg focus:outline-none focus:border-amber-500 transition bg-[#FBF6EC] font-medium">
             
             <select id="questionCountSelect" class="w-full md:w-1/3 border-2 border-amber-300 rounded-xl px-4 py-3 text-lg focus:outline-none focus:border-amber-500 transition bg-[#FBF6EC] text-slate-700 font-medium">
                 <option value="3">Khởi động (3 câu)</option>
@@ -130,7 +129,7 @@
     </div>
 
     <!-- Khu vực Hiển thị Câu hỏi -->
-    <main id="questionContainer" class="max-w-3xl mx-auto mt-6 grid grid-cols-1 gap-6 hidden transition-all px-4"></main>
+    <main id="questionContainer" class="max-w-3xl mx-auto mt-6 grid grid-cols-1 gap-6 hidden transition-all px-4" id="luyentap"></main>
 
     <!-- Khu vực Nút Nộp Bài -->
     <div id="submitArea" class="max-w-3xl mx-auto mt-8 text-center hidden transition-all px-4">
@@ -160,7 +159,7 @@
                 <img src="QR_Khoi_2.jpg" alt="QR Zalo" class="w-36 h-36 mx-auto rounded-lg shadow border bg-white p-1">
             </div>
             <a href="https://zalo.me/g/ybsu5tpbmfsflpeeaalm" target="_blank" class="inline-block bg-emerald-600 hover:bg-emerald-700 text-white font-bold px-6 py-2.5 rounded-xl shadow transition">
-                🔗 Vào nhóm Zalo
+                🔗 Hoặc bấm vào đây để vào nhóm Zalo
             </a>
         </div>
         
@@ -225,8 +224,8 @@
                     return obj;
                 });
 
-                statusBadge.className = "inline-flex items-center bg-emerald-100 text-emerald-800 text-xs font-bold px-4 py-1.5 rounded-full shadow-sm";
-                statusBadge.innerHTML = `✅ Kho đề luyện tập toàn diện đã sẵn sàng`;
+                statusBadge.className = "inline-flex items-center bg-emerald-100 text-emerald-800 text-xs font-bold px-3 py-1 rounded-full shadow-sm";
+                statusBadge.innerHTML = `✅ Kho đề đã sẵn sàng`;
                 
                 selectionArea.classList.remove('opacity-50', 'pointer-events-none');
                 startBtn.removeAttribute('disabled');
@@ -234,8 +233,8 @@
 
             } catch (error) {
                 console.error(error);
-                statusBadge.className = "inline-flex items-center bg-red-100 text-red-800 text-xs font-bold px-4 py-1.5 rounded-full shadow-sm";
-                statusBadge.innerHTML = `❌ Lỗi tải dữ liệu. Kiểm tra lại link!`;
+                statusBadge.className = "inline-flex items-center bg-red-100 text-red-800 text-xs font-bold px-3 py-1 rounded-full shadow-sm";
+                statusBadge.innerHTML = `❌ Lỗi kết nối dữ liệu`;
             }
         };
 
