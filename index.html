@@ -41,7 +41,7 @@
             padding:10px 24px; max-width:1180px; margin:0 auto;
         }
         
-        /* Logo chuẩn theo ảnh mẫu */
+        /* Logo chuẩn mẫu gốc */
         .logo-box {
             display:flex; align-items:center; gap:12px; text-decoration:none;
         }
@@ -64,11 +64,10 @@
 </head>
 <body class="min-h-screen pb-12">
 
-    <!-- Header gọn gàng, bỏ menu thừa -->
+    <!-- Header chuẩn -->
     <header>
       <nav class="nav">
         <a href="#" class="logo-box">
-          <!-- Logo chuẩn mẫu ảnh: Sách mở + Ngôi sao + Chữ B -->
           <svg class="logo-icon-svg" viewBox="0 0 52 42" fill="none" xmlns="http://www.w3.org/2000/svg">
             <path d="M6 10C6 9.44772 6.44772 9 7 9H18C19.6569 9 21 10.3431 21 12V35C21 35.5523 20.5523 36 20 36H7C6.44772 36 6 35.5523 6 35V10Z" stroke="#E3A038" stroke-width="2"/>
             <path d="M46 10C46 9.44772 45.5523 9 45 9H34C32.3431 9 31 10.3431 31 12V35C31 35.5523 31.4477 36 32 36H45C45.5523 36 46 35.5523 46 35V10Z" stroke="#E3A038" stroke-width="2"/>
@@ -81,7 +80,7 @@
           </svg>
           <div class="logo-texts">
             <span class="logo-title">TOÁN BÁC LONG</span>
-            <span class="logo-sub">HỌC RÔNG - HIỂU SÂU</span>
+            <span class="logo-sub">HỌC RỘNG - HIỂU SÂU</span>
           </div>
         </a>
         <a href="#luyentap" class="btn btn-primary">Vào làm bài</a>
@@ -95,17 +94,10 @@
         <p class="text-slate-600">Chọn cấu hình bài thi, nhập tên của con và bắt đầu rèn luyện tư duy toán học.</p>
     </div>
 
-    <!-- Khu vực Nhập Tên Học Sinh (Đã tích hợp trạng thái và màu sắc đồng bộ hoàn toàn) -->
+    <!-- Khu vực Nhập Tên Học Sinh (Đã bỏ badge thừa phía trong) -->
     <div id="selectionArea" class="max-w-3xl mx-auto mt-6 bg-white p-8 rounded-2xl shadow-sm border border-slate-200 transition-all opacity-50 pointer-events-none mx-4">
         
-        <!-- Trạng thái kết nối nằm gọn bên trong khung -->
-        <div class="flex justify-between items-center mb-6 border-b pb-4">
-            <h2 class="text-slate-800 font-bold text-2xl font-['Baloo_2']">👨‍🎓 Thông tin làm bài:</h2>
-            <span id="statusBadge" class="inline-flex items-center bg-amber-100 text-amber-900 text-xs font-bold px-3.5 py-1 rounded-full shadow-sm">
-                <svg class="animate-spin -ml-1 mr-2 h-4 w-4 text-amber-900" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"><circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle><path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path></svg>
-                Đang kết nối kho đề...
-            </span>
-        </div>
+        <h2 class="text-slate-800 font-bold mb-6 text-2xl text-center font-['Baloo_2']">👨‍🎓 Thông tin làm bài:</h2>
         
         <div class="flex flex-col md:flex-row gap-4 justify-center items-center mb-8">
             <input type="text" id="studentNameInput" placeholder="Nhập tên của con (VD: Linh Đan)..." class="w-full md:w-2/3 border-2 border-amber-300 rounded-xl px-4 py-3 text-lg focus:outline-none focus:border-amber-500 transition bg-[#FBF6EC] font-medium">
@@ -159,7 +151,7 @@
                 <img src="QR_Khoi_2.jpg" alt="QR Zalo" class="w-36 h-36 mx-auto rounded-lg shadow border bg-white p-1">
             </div>
             <a href="https://zalo.me/g/ybsu5tpbmfsflpeeaalm" target="_blank" class="inline-block bg-emerald-600 hover:bg-emerald-700 text-white font-bold px-6 py-2.5 rounded-xl shadow transition">
-                🔗 Hoặc bấm vào đây để vào nhóm Zalo
+                🔗 Vào nhóm Zalo
             </a>
         </div>
         
@@ -199,7 +191,6 @@
         }
 
         window.onload = async function() {
-            const statusBadge = document.getElementById('statusBadge');
             const selectionArea = document.getElementById('selectionArea');
             const startBtn = document.getElementById('startBtn');
 
@@ -223,9 +214,6 @@
                     });
                     return obj;
                 });
-
-                statusBadge.className = "inline-flex items-center bg-emerald-100 text-emerald-800 text-xs font-bold px-3 py-1 rounded-full shadow-sm";
-                statusBadge.innerHTML = `✅ Kho đề đã sẵn sàng`;
                 
                 selectionArea.classList.remove('opacity-50', 'pointer-events-none');
                 startBtn.removeAttribute('disabled');
@@ -233,8 +221,7 @@
 
             } catch (error) {
                 console.error(error);
-                statusBadge.className = "inline-flex items-center bg-red-100 text-red-800 text-xs font-bold px-3 py-1 rounded-full shadow-sm";
-                statusBadge.innerHTML = `❌ Lỗi kết nối dữ liệu`;
+                alert("Lỗi tải dữ liệu kho đề từ Google Sheets!");
             }
         };
 
