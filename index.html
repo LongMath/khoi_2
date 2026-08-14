@@ -1,376 +1,372 @@
 <!DOCTYPE html>
 <html lang="vi">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Hệ Thống Luyện Tập | CLB Toán Bác Long</title>
-<script src="https://cdn.tailwindcss.com"></script>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@500;600;700;800&family=Be+Vietnam+Pro:wght@400;500;600;700;800&family=JetBrains+Mono:wght@500;700&display=swap" rel="stylesheet">
-<style>
-  :root{
-    --paper:#FBF6EC;
-    --paper-2:#F6EFDD;
-    --ink:#0C2050;
-    --ink-2:#123069;
-    --ink-soft:#4A5573;
-    --coral:#E63A2E;
-    --coral-dark:#C22A1F;
-    --sun:#F6B915;
-    --gold:#E3A038;
-    --gold-dark:#B8850A;
-    --mist:#D9CBAE;
-    --card-border: rgba(12,32,80,0.10);
-    --radius-lg: 28px;
-    --radius-md: 18px;
-    --shadow-soft: 0 18px 40px -18px rgba(12,32,80,0.32);
-  }
-  *{box-sizing:border-box; margin:0; padding:0;}
-  html{scroll-behavior:smooth;}
-  body{
-    font-family:'Be Vietnam Pro', sans-serif;
-    background:var(--paper);
-    color:var(--ink);
-    line-height:1.5;
-    overflow-x:hidden;
-  }
-  img{max-width:100%; display:block;}
-  a{text-decoration:none; color:inherit;}
-  ul{list-style:none;}
-  h1,h2,h3,h4{font-family:'Baloo 2', sans-serif; font-weight:700; line-height:1.15;}
-  .mono{font-family:'JetBrains Mono', monospace;}
-  .wrap{max-width:1180px; margin:0 auto; padding:0 24px;}
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hệ Thống Luyện Tập - CLB Toán Bác Long</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@500;600;700;800&family=Be+Vietnam+Pro:wght@400;500;600;700;800&family=JetBrains+Mono:wght@500;700&display=swap" rel="stylesheet">
+    <style>
+        :root{
+            --paper:#FBF6EC;
+            --paper-2:#F6EFDD;
+            --ink:#0C2050;
+            --ink-2:#123069;
+            --ink-soft:#4A5573;
+            --gold:#E3A038;
+            --gold-dark:#B8850A;
+            --card-border: rgba(12,32,80,0.10);
+            --shadow-soft: 0 18px 40px -18px rgba(12,32,80,0.32);
+        }
+        body{
+            font-family:'Be Vietnam Pro', sans-serif;
+            background:var(--paper);
+            color:var(--ink);
+            line-height:1.5;
+        }
+        h1,h2,h3,h4{font-family:'Baloo 2', sans-serif; font-weight:700;}
+        .transition-all { transition: all 0.3s ease; }
+        @keyframes spin { 100% { transform: rotate(360deg); } }
+        .animate-spin { animation: spin 1s linear infinite; }
 
-  .grid-bg{background-color: var(--paper);}
+        header{
+            position:sticky; top:0; z-index:100;
+            background:rgba(12,32,80,0.94);
+            backdrop-filter:blur(8px);
+            border-bottom:1px solid rgba(227,160,56,0.25);
+        }
+        .nav{
+            display:flex; align-items:center; justify-content:space-between;
+            padding:10px 24px; max-width:1180px; margin:0 auto;
+        }
+        .logo-box {
+            display:flex; align-items:center; gap:12px; text-decoration:none;
+        }
+        .logo-icon-svg {
+            width: 42px; height: 38px; display: block; flex-shrink: 0;
+        }
+        .logo-texts { display:flex; flex-direction:column; justify-content:center; }
+        .logo-title { font-family:'Baloo 2'; font-weight:800; font-size:17px; color:#fff; letter-spacing:.03em; line-height:1.1; }
+        .logo-sub { font-family:'JetBrains Mono'; font-weight:700; font-size:9.5px; color:var(--gold); letter-spacing:.05em; text-transform:uppercase; margin-top:3px; }
 
-  header{
-    position:sticky; top:0; z-index:100;
-    background:rgba(12,32,80,0.94);
-    backdrop-filter:blur(8px);
-    border-bottom:1px solid rgba(227,160,56,0.25);
-  }
-  .nav{
-    display:flex; align-items:center; justify-content:space-between;
-    padding:10px 24px; max-width:1180px; margin:0 auto;
-  }
-  
-  /* Logo chuẩn chỉnh giống mẫu template gốc */
-  .logo-box {
-    display:flex; align-items:center; gap:12px; text-decoration:none;
-  }
-  .logo-icon-svg {
-    width: 42px; height: 38px; display: block; flex-shrink: 0;
-  }
-  .logo-texts { display:flex; flex-direction:column; justify-content:center; }
-  .logo-title { font-family:'Baloo 2'; font-weight:800; font-size:17px; color:#fff; letter-spacing:.03em; line-height:1.1; }
-  .logo-sub { font-family:'JetBrains Mono'; font-weight:700; font-size:9.5px; color:var(--gold); letter-spacing:.05em; text-transform:uppercase; margin-top:3px; }
-
-  .nav-links{display:flex; gap:26px; font-weight:600; font-size:14px; color:rgba(255,255,255,0.82);}
-  .nav-links a:hover{color:var(--gold);}
-  
-  .btn{
-    display:inline-flex; align-items:center; justify-content:center; gap:8px;
-    padding:11px 24px; border-radius:100px; font-weight:700; font-size:14.5px;
-    cursor:pointer; border:none; transition:transform .15s ease, box-shadow .15s ease;
-  }
-  .btn-primary{background:var(--gold); color:var(--ink); box-shadow:0 10px 24px -8px rgba(227,160,56,0.55);}
-  .btn-primary:hover{transform:translateY(-2px); box-shadow:0 14px 28px -8px rgba(227,160,56,0.65);}
-
-  .section{padding:50px 0 88px; position:relative;}
-  .section-head{text-align:center; max-width:640px; margin:0 auto 40px;}
-  .kicker{
-    display:inline-block; font-family:'JetBrains Mono'; font-weight:700; font-size:12px; letter-spacing:.08em;
-    color:var(--gold-dark); background:rgba(227,160,56,0.16); padding:5px 12px; border-radius:100px; margin-bottom:12px;
-  }
-  .section-head h2{font-size:clamp(26px,3vw,36px); color:var(--ink); margin-bottom:10px;}
-  .section-head p{color:var(--ink-soft); font-size:15px;}
-
-  .practice-box {
-    background:#fff; border-radius:var(--radius-lg); padding:40px; box-shadow:var(--shadow-soft); border:1px solid var(--card-border);
-    max-width:820px; margin:0 auto; position:relative;
-  }
-  
-  footer{background:#161f36; color:var(--mist-dim); padding:28px 24px; text-align:center; font-size:13px;}
-</style>
+        .nav-links{display:flex; gap:26px; font-weight:600; font-size:14px; color:rgba(255,255,255,0.82);}
+        .nav-links a:hover{color:var(--gold);}
+        
+        .btn{
+            display:inline-flex; align-items:center; justify-content:center; gap:8px;
+            padding:10px 22px; border-radius:100px; font-weight:700; font-size:14px;
+            cursor:pointer; border:none; transition:transform .15s ease, box-shadow .15s ease;
+        }
+        .btn-primary{background:var(--gold); color:var(--ink); box-shadow:0 10px 24px -8px rgba(227,160,56,0.55);}
+        .btn-primary:hover{transform:translateY(-2px); box-shadow:0 14px 28px -8px rgba(227,160,56,0.65);}
+    </style>
 </head>
-<body class="grid-bg">
+<body class="min-h-screen pb-12">
 
-<!-- HEADER CHUẨN MẪU -->
-<header>
-  <nav class="nav">
-    <a href="#" class="logo-box">
-      <!-- SVG biểu tượng quyển sách mở và chữ B vàng chuẩn nét theo template gốc -->
-      <svg class="logo-icon-svg" viewBox="0 0 46 38" fill="none" xmlns="http://www.w3.org/2000/svg">
-        <path d="M4.5 7.5C4.5 6.94772 4.94772 6.5 5.5 6.5H16.5C18.1569 6.5 19.5 7.84315 19.5 9.5V30.5C19.5 31.0523 19.0523 31.5 18.5 31.5H5.5C4.94772 31.5 4.5 31.0523 4.5 30.5V7.5Z" stroke="#E3A038" stroke-width="2"/>
-        <path d="M41.5 7.5C41.5 6.94772 41.0523 6.5 40.5 6.5H29.5C27.8431 6.5 26.5 7.84315 26.5 9.5V30.5C26.5 31.0523 26.9477 31.5 27.5 31.5H40.5C41.0523 31.5 41.5 31.0523 41.5 30.5V7.5Z" stroke="#E3A038" stroke-width="2"/>
-        <path d="M23 6.5V31.5" stroke="#E3A038" stroke-width="2"/>
-        <path d="M23 4.5C23 3.94772 22.5523 3.5 22 3.5H18" stroke="#E3A038" stroke-width="1.5" stroke-linecap="round"/>
-        <circle cx="18" cy="5" r="1.5" fill="#E3A038"/>
-        <text x="23" y="23" fill="#E3A038" font-family="'Baloo 2', sans-serif" font-weight="800" font-size="16" text-anchor="middle">B</text>
-      </svg>
-      <div class="logo-texts">
-        <span class="logo-title">TOÁN BÁC LONG</span>
-        <span class="logo-sub">— HỌC RỘNG - HIỂU SÂU —</span>
-      </div>
-    </a>
-    <ul class="nav-links">
-      <li><a href="#">Lộ trình</a></li>
-      <li><a href="#luyentap">Luyện tập</a></li>
-      <li><a href="#">Ưu đãi</a></li>
-      <li><a href="#">Giáo viên</a></li>
-      <li><a href="#">Đánh giá</a></li>
-    </ul>
-    <a href="#luyentap" class="btn btn-primary">Đăng ký học</a>
-  </nav>
-</header>
+    <!-- Header chuẩn mẫu template -->
+    <header>
+      <nav class="nav">
+        <a href="#" class="logo-box">
+          <svg class="logo-icon-svg" viewBox="0 0 46 38" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M4.5 7.5C4.5 6.94772 4.94772 6.5 5.5 6.5H16.5C18.1569 6.5 19.5 7.84315 19.5 9.5V30.5C19.5 31.0523 19.0523 31.5 18.5 31.5H5.5C4.94772 31.5 4.5 31.0523 4.5 30.5V7.5Z" stroke="#E3A038" stroke-width="2"/>
+            <path d="M41.5 7.5C41.5 6.94772 41.0523 6.5 40.5 6.5H29.5C27.8431 6.5 26.5 7.84315 26.5 9.5V30.5C26.5 31.0523 26.9477 31.5 27.5 31.5H40.5C41.0523 31.5 41.5 31.0523 41.5 30.5V7.5Z" stroke="#E3A038" stroke-width="2"/>
+            <path d="M23 6.5V31.5" stroke="#E3A038" stroke-width="2"/>
+            <path d="M23 4.5C23 3.94772 22.5523 3.5 22 3.5H18" stroke="#E3A038" stroke-width="1.5" stroke-linecap="round"/>
+            <circle cx="18" cy="5" r="1.5" fill="#E3A038"/>
+            <text x="23" y="23" fill="#E3A038" font-family="'Baloo 2', sans-serif" font-weight="800" font-size="16" text-anchor="middle">B</text>
+          </svg>
+          <div class="logo-texts">
+            <span class="logo-title">TOÁN BÁC LONG</span>
+            <span class="logo-sub">— HỌC RỘNG - HIỂU SÂU —</span>
+          </div>
+        </a>
+        <ul class="nav-links">
+          <li><a href="#luyentap">Luyện tập</a></li>
+          <li><a href="#dangky">Đăng ký</a></li>
+        </ul>
+        <a href="#luyentap" class="btn btn-primary">Vào làm bài</a>
+      </nav>
+    </header>
 
-<!-- KHU VỰC LUYỆN TẬP TRỰC TUYẾN CHUYÊN SÂU -->
-<section class="section" id="luyentap">
-  <div class="wrap">
-    
-    <div class="section-head">
-      <span class="kicker">🎯 PHÒNG THI & LUYỆN TẬP TRỰC TUYẾN</span>
-      <h2>Hệ thống làm bài thông minh</h2>
-      <p>Chọn số câu, nhập tên và bắt đầu làm bài trực tiếp với hệ thống đề thi chuẩn hóa.</p>
+    <!-- Main Title -->
+    <div class="max-w-3xl mx-auto mt-10 text-center px-4">
+        <span class="inline-block font-['JetBrains_Mono'] font-bold text-xs uppercase tracking-wider text-amber-800 bg-amber-500/15 px-3 py-1 rounded-full mb-3">🎯 HỆ THỐNG LUYỆN TẬP TRỰC TUYẾN</span>
+        <h1 class="text-3xl font-bold mb-2 font-['Baloo_2'] text-[#0C2050]">Kho đề luyện tập toàn diện đã sẵn sàng</h1>
+        <p class="text-slate-600">Chọn cấu hình bài thi, nhập tên của con và bắt đầu rèn luyện tư duy toán học.</p>
     </div>
 
-    <div class="practice-box">
-        <!-- Trạng thái kết nối Google Sheets & Kho đề đã sẵn sàng -->
-        <div class="flex justify-between items-center mb-6 border-b pb-4">
-            <span class="text-sm font-bold text-slate-700">📚 Kho đề luyện tập toàn diện đã sẵn sàng</span>
-            <span id="statusBadge" class="inline-flex items-center bg-amber-100 text-amber-900 text-xs font-bold px-3 py-1 rounded-full">
-                🔄 Đang kết nối dữ liệu...
-            </span>
+    <!-- Trạng thái kết nối (Chỉ giữ lại duy nhất 1 thông báo gọn gàng ở đây) -->
+    <div class="max-w-3xl mx-auto mt-4 px-4 text-center">
+        <span id="statusBadge" class="inline-flex items-center bg-amber-100 text-amber-900 text-xs font-bold px-4 py-1.5 rounded-full shadow-sm">
+            <svg class="animate-spin -ml-1 mr-2 h-4 w-4 text-amber-900" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"><circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle><path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path></svg>
+            Đang kết nối dữ liệu kho đề...
+        </span>
+    </div>
+
+    <!-- Khu vực Nhập Tên Học Sinh -->
+    <div id="selectionArea" class="max-w-3xl mx-auto mt-4 bg-white p-8 rounded-2xl shadow-sm border border-slate-200 transition-all opacity-50 pointer-events-none mx-4">
+        <h2 class="text-slate-800 font-bold mb-6 text-2xl text-center font-['Baloo_2']">👨‍🎓 Thông tin làm bài:</h2>
+        
+        <div class="flex flex-col md:flex-row gap-4 justify-center items-center mb-8">
+            <input type="text" id="studentNameInput" placeholder="Nhập tên của con (VD: Linh Đan)..." class="w-full md:w-2/3 border-2 border-amber-300 rounded-xl px-4 py-3 text-lg focus:outline-none focus:border-amber-500 transition bg-[#FBF6EC]">
+            
+            <select id="questionCountSelect" class="w-full md:w-1/3 border-2 border-amber-300 rounded-xl px-4 py-3 text-lg focus:outline-none focus:border-amber-500 transition bg-[#FBF6EC] text-slate-700 font-medium">
+                <option value="3">Khởi động (3 câu)</option>
+                <option value="5">Thử thách (5 câu)</option>
+                <option value="10" selected>Olympic (10 câu)</option>
+                <option value="24">Đề thi thật (24 câu)</option>
+            </select>
         </div>
 
-        <!-- Khu vực Nhập Tên -->
-        <div id="selectionArea" class="max-w-xl mx-auto bg-[#FBF6EC] p-6 rounded-2xl border border-amber-200 transition-all opacity-50 pointer-events-none">
-            <h3 class="text-slate-800 font-bold mb-4 text-xl text-center font-['Baloo_2']">👨‍🎓 Thông tin học sinh</h3>
-            <div class="flex flex-col gap-4 mb-6">
-                <input type="text" id="studentNameInput" placeholder="Nhập tên của con (VD: Minh Quân)..." class="w-full border-2 border-amber-300 rounded-xl px-4 py-3 text-base focus:outline-none focus:border-amber-500 bg-white font-medium">
-                
-                <select id="questionCountSelect" class="w-full border-2 border-amber-300 rounded-xl px-4 py-3 text-base focus:outline-none focus:border-amber-500 bg-white text-slate-700 font-medium">
-                    <option value="3">Khởi động (3 câu)</option>
-                    <option value="5">Thử thách (5 câu)</option>
-                    <option value="10" selected>Olympic (10 câu)</option>
-                    <option value="24">Đề thi thật (24 câu)</option>
-                </select>
-            </div>
-            <div class="text-center">
-                <button id="startBtn" onclick="startTest()" class="bg-amber-500 hover:bg-amber-600 text-[#0C2050] px-8 py-3.5 rounded-xl font-bold text-lg shadow transition cursor-not-allowed" disabled>
-                    🚀 Bắt đầu làm bài
-                </button>
+        <div class="text-center">
+            <button id="startBtn" onclick="startTest()" class="bg-amber-500 hover:bg-amber-600 text-[#0C2050] px-8 py-3.5 rounded-xl font-bold text-lg shadow-lg transition transform hover:scale-105 cursor-not-allowed" disabled>
+                🚀 Bắt đầu làm bài
+            </button>
+            <div class="mt-6">
+                <button onclick="resetAttempts()" class="text-sm text-slate-400 underline hover:text-red-500 transition">Xóa dữ liệu bộ đếm lịch sử</button>
             </div>
         </div>
+    </div>
 
-        <!-- Khu vực hiển thị câu hỏi -->
-        <main id="questionContainer" class="max-w-xl mx-auto mt-6 space-y-6 hidden"></main>
+    <!-- Khu vực Hiển thị Câu hỏi -->
+    <main id="questionContainer" class="max-w-3xl mx-auto mt-6 grid grid-cols-1 gap-6 hidden transition-all px-4"></main>
 
-        <!-- Nút nộp bài -->
-        <div id="submitArea" class="max-w-xl mx-auto mt-8 text-center hidden">
-            <button onclick="submitTest()" class="bg-emerald-600 hover:bg-emerald-700 text-white px-8 py-3.5 rounded-xl font-bold text-lg shadow transition">
-                Nộp bài & Xem kết quả
+    <!-- Khu vực Nút Nộp Bài -->
+    <div id="submitArea" class="max-w-3xl mx-auto mt-8 text-center hidden transition-all px-4">
+        <button onclick="submitTest()" class="bg-emerald-600 hover:bg-emerald-700 text-white px-8 py-3.5 rounded-xl font-bold text-lg shadow-lg transition transform hover:scale-105">
+            Nộp bài & Xem kết quả
+        </button>
+    </div>
+
+    <!-- Khu vực Kết quả & Nhận xét -->
+    <div id="resultArea" class="max-w-3xl mx-auto mt-8 bg-white p-8 rounded-2xl shadow-lg border border-emerald-200 hidden transition-all mx-4">
+        <h2 class="text-2xl font-bold text-center text-slate-800 mb-4 border-b pb-4 font-['Baloo_2']">BẢNG KẾT QUẢ</h2>
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-4 mb-6 bg-[#FBF6EC] p-4 rounded-xl border border-amber-200">
+            <div class="text-lg text-center md:text-left"><span class="font-bold text-slate-600">Học sinh:</span> <span id="resStudentName" class="font-bold text-blue-700"></span></div>
+            <div class="text-lg text-center"><span class="font-bold text-slate-600">Lần làm bài:</span> <span id="resAttemptCount" class="font-bold text-purple-700"></span></div>
+            <div class="text-lg text-center md:text-right"><span class="font-bold text-slate-600">Điểm số:</span> <span id="resScore" class="font-bold text-red-600 text-2xl"></span></div>
+        </div>
+        <div class="bg-blue-50 p-4 rounded-xl border border-blue-100 mb-6">
+            <h3 class="font-bold text-blue-800 mb-2 font-['Baloo_2']">👨‍🏫 Bác Long nhận xét:</h3>
+            <p id="resComment" class="text-blue-900 italic text-base leading-relaxed"></p>
+        </div>
+        <div id="resDetails" class="space-y-3"></div>
+        
+        <!-- Khung Zalo QR -->
+        <div class="mt-6 p-6 bg-[#FBF6EC] rounded-xl border border-amber-200 text-center">
+            <p class="text-[#0C2050] font-bold mb-3 text-lg font-['Baloo_2']">💬 Tham gia Nhóm Zalo để Bác Long giải đáp thắc mắc cho con:</p>
+            <div class="mb-4">
+                <img src="QR_Khoi_2.jpg" alt="QR Zalo" class="w-36 h-36 mx-auto rounded-lg shadow border bg-white p-1">
+            </div>
+            <a href="https://zalo.me/g/ybsu5tpbmfsflpeeaalm" target="_blank" class="inline-block bg-emerald-600 hover:bg-emerald-700 text-white font-bold px-6 py-2.5 rounded-xl shadow transition">
+                🔗 Vào nhóm Zalo
+            </a>
+        </div>
+        
+        <div class="mt-8 text-center">
+            <button onclick="location.reload()" class="bg-slate-600 hover:bg-slate-700 text-white px-6 py-2.5 rounded-xl font-bold shadow transition">
+                Quay lại trang chủ
             </button>
         </div>
-
-        <!-- Bảng kết quả -->
-        <div id="resultArea" class="max-w-xl mx-auto mt-8 bg-[#FBF6EC] p-8 rounded-2xl border border-emerald-300 hidden">
-            <h3 class="text-2xl font-bold text-center text-slate-800 mb-4 border-b pb-3 font-['Baloo_2']">BẢNG KẾT QUẢ</h3>
-            <div class="grid grid-cols-3 gap-2 mb-6 bg-white p-4 rounded-xl border text-center">
-                <div><span class="block text-xs text-slate-500 font-medium">Học sinh</span> <span id="resStudentName" class="font-bold text-blue-700 text-sm"></span></div>
-                <div><span class="block text-xs text-slate-500 font-medium">Lần làm</span> <span id="resAttemptCount" class="font-bold text-purple-700 text-sm"></span></div>
-                <div><span class="block text-xs text-slate-500 font-medium">Điểm số</span> <span id="resScore" class="font-bold text-red-600 text-base"></span></div>
-            </div>
-            <div class="bg-blue-50 p-4 rounded-xl border border-blue-100 mb-6 text-sm">
-                <h4 class="font-bold text-blue-800 mb-1 font-['Baloo_2']">👨‍🏫 Bác Long nhận xét:</h4>
-                <p id="resComment" class="text-blue-900 italic"></p>
-            </div>
-            <div id="resDetails" class="space-y-3"></div>
-            
-            <!-- Khung Zalo QR fix chuẩn link ảnh trực tiếp -->
-            <div class="mt-6 p-6 bg-[#F6EFDD] rounded-xl border border-amber-200 text-center">
-                <p class="text-[#0C2050] font-bold mb-3 text-sm font-['Baloo_2']">💬 Tham gia Nhóm Zalo để nhận giải chi tiết:</p>
-                <div class="mb-3">
-                    <img src="https://raw.githubusercontent.com/LongMath/khoi_2/main/QR_Khoi_2.jpg" alt="QR Zalo" class="w-36 h-36 mx-auto rounded-lg shadow border bg-white p-1" onerror="this.onerror=null; this.src='QR_Khoi_2.jpg';">
-                </div>
-                <a href="https://zalo.me/g/ybsu5tpbmfsflpeeaalm" target="_blank" class="inline-block bg-emerald-600 text-white font-bold px-6 py-2.5 rounded-xl text-sm shadow transition">
-                    🔗 Vào nhóm Zalo
-                </a>
-            </div>
-            
-            <div class="mt-8 text-center">
-                <button onclick="location.reload()" class="bg-slate-600 text-white px-6 py-2.5 rounded-xl font-bold text-sm shadow">
-                    Làm lại bài mới
-                </button>
-            </div>
-        </div>
     </div>
-  </div>
-</section>
 
-<footer>
-  © 2026 CLB Toán Bác Long (LongMath) — HỌC RỘNG - HIỂU SÂU.
-</footer>
+    <!-- JAVASCRIPT XỬ LÝ DỮ LIỆU -->
+    <script>
+        let onlineQuestionBank = [];
+        let currentStudentName = "";
+        let currentStudentKey = "";
+        let currentQuestions = [];
 
-<script>
-    let onlineQuestionBank = [];
-    let currentStudentName = "";
-    let currentStudentKey = "";
-    let currentQuestions = [];
+        const GOOGLE_SHEET_CSV_URL = "https://docs.google.com/spreadsheets/d/e/2PACX-1vSf9FiwOPuyT2hRnDKblMLwE4465cTTDyvKLTeANk3l4cM2RSmud8BExl-O4PkUHU9cBGCB9sQ6B_xE/pub?output=csv";
 
-    const GOOGLE_SHEET_CSV_URL = "https://docs.google.com/spreadsheets/d/e/2PACX-1vSf9FiwOPuyT2hRnDKblMLwE4465cTTDyvKLTeANk3l4cM2RSmud8BExl-O4PkUHU9cBGCB9sQ6B_xE/pub?output=csv";
-
-    function parseCSV(str) {
-        const arr = [];
-        let quote = false;
-        let row = 0, col = 0;
-        for (let c = 0; c < str.length; c++) {
-            let cc = str[c], nc = str[c+1];
-            arr[row] = arr[row] || [];
-            arr[row][col] = arr[row][col] || '';
-            if (cc == '"' && quote && nc == '"') { arr[row][col] += cc; ++c; continue; }
-            if (cc == '"') { quote = !quote; continue; }
-            if (cc == ',' && !quote) { ++col; continue; }
-            if (cc == '\r' && nc == '\n' && !quote) { ++row; col = 0; ++c; continue; }
-            if (cc == '\n' && !quote) { ++row; col = 0; continue; }
-            if (cc == '\r' && !quote) { ++row; col = 0; continue; }
-            arr[row][col] += cc;
+        function parseCSV(str) {
+            const arr = [];
+            let quote = false;
+            let row = 0, col = 0;
+            for (let c = 0; c < str.length; c++) {
+                let cc = str[c], nc = str[c+1];
+                arr[row] = arr[row] || [];
+                arr[row][col] = arr[row][col] || '';
+                if (cc == '"' && quote && nc == '"') { arr[row][col] += cc; ++c; continue; }
+                if (cc == '"') { quote = !quote; continue; }
+                if (cc == ',' && !quote) { ++col; continue; }
+                if (cc == '\r' && nc == '\n' && !quote) { ++row; col = 0; ++c; continue; }
+                if (cc == '\n' && !quote) { ++row; col = 0; continue; }
+                if (cc == '\r' && !quote) { ++row; col = 0; continue; }
+                arr[row][col] += cc;
+            }
+            return arr;
         }
-        return arr;
-    }
 
-    window.onload = async function() {
-        const statusBadge = document.getElementById('statusBadge');
-        const selectionArea = document.getElementById('selectionArea');
-        const startBtn = document.getElementById('startBtn');
+        window.onload = async function() {
+            const statusBadge = document.getElementById('statusBadge');
+            const selectionArea = document.getElementById('selectionArea');
+            const startBtn = document.getElementById('startBtn');
 
-        try {
-            const response = await fetch(GOOGLE_SHEET_CSV_URL);
-            if (!response.ok) throw new Error("Lỗi tải file CSV");
-            
-            const buffer = await response.arrayBuffer();
-            const csvText = new TextDecoder('utf-8').decode(buffer);
-            const rows = parseCSV(csvText).filter(row => row.join('').trim() !== '');
-            if (rows.length < 2) throw new Error("CSV trống");
+            try {
+                const response = await fetch(GOOGLE_SHEET_CSV_URL);
+                if (!response.ok) throw new Error("Mạng lỗi hoặc sai link CSV");
+                
+                const buffer = await response.arrayBuffer();
+                const decoder = new TextDecoder('utf-8');
+                const csvText = decoder.decode(buffer);
+                
+                const rows = parseCSV(csvText).filter(row => row.join('').trim() !== '');
+                if (rows.length < 2) throw new Error("File CSV trống hoặc chưa đúng định dạng");
 
-            const headers = rows.shift(); 
-            onlineQuestionBank = rows.map(row => {
-                let obj = {};
-                headers.forEach((header, index) => {
-                    obj[header.trim()] = row[index] ? row[index].trim() : '';
+                const headers = rows.shift(); 
+
+                onlineQuestionBank = rows.map(row => {
+                    let obj = {};
+                    headers.forEach((header, index) => {
+                        obj[header.trim()] = row[index] ? row[index].trim() : '';
+                    });
+                    return obj;
                 });
-                return obj;
+
+                statusBadge.className = "inline-flex items-center bg-emerald-100 text-emerald-800 text-xs font-bold px-4 py-1.5 rounded-full shadow-sm";
+                statusBadge.innerHTML = `✅ Kho đề luyện tập toàn diện đã sẵn sàng`;
+                
+                selectionArea.classList.remove('opacity-50', 'pointer-events-none');
+                startBtn.removeAttribute('disabled');
+                startBtn.classList.remove('cursor-not-allowed');
+
+            } catch (error) {
+                console.error(error);
+                statusBadge.className = "inline-flex items-center bg-red-100 text-red-800 text-xs font-bold px-4 py-1.5 rounded-full shadow-sm";
+                statusBadge.innerHTML = `❌ Lỗi tải dữ liệu. Kiểm tra lại link!`;
+            }
+        };
+
+        function shuffleArray(array) {
+            let shuffled = [...array];
+            for (let i = shuffled.length - 1; i > 0; i--) {
+                const j = Math.floor(Math.random() * (i + 1));
+                [shuffled[i], shuffled[j]] = [shuffled[j], shuffled[i]];
+            }
+            return shuffled;
+        }
+
+        function getAttempts() {
+            const data = localStorage.getItem('bac_long_attempts');
+            return data ? JSON.parse(data) : {};
+        }
+
+        function saveAttempts(attemptsData) {
+            localStorage.setItem('bac_long_attempts', JSON.stringify(attemptsData));
+        }
+
+        function resetAttempts() {
+            if(confirm("Bác Long có chắc muốn xóa lịch sử số lần làm bài của các con không?")) {
+                localStorage.removeItem('bac_long_attempts');
+                alert("Đã xóa dữ liệu thành công!");
+            }
+        }
+
+        function startTest() {
+            const nameInput = document.getElementById('studentNameInput').value.trim();
+            if (!nameInput) {
+                alert("Vui lòng nhập tên của con để bắt đầu nhé!");
+                return;
+            }
+
+            if (onlineQuestionBank.length === 0) {
+                alert("Hệ thống chưa tải xong dữ liệu hoặc link bị lỗi. Vui lòng F5 tải lại trang.");
+                return;
+            }
+
+            currentStudentName = nameInput;
+            currentStudentKey = nameInput.toLowerCase().replace(/\s+/g, '_');
+            const qCount = parseInt(document.getElementById('questionCountSelect').value);
+
+            const shuffledBank = shuffleArray(onlineQuestionBank);
+            const questionsToTake = Math.min(qCount, shuffledBank.length);
+            currentQuestions = shuffledBank.slice(0, questionsToTake);
+
+            document.getElementById('selectionArea').classList.add('hidden');
+            const container = document.getElementById('questionContainer');
+            container.innerHTML = ''; 
+
+            currentQuestions.forEach((q, index) => {
+                const safeId = q.id ? q.id : `q_${index}`;
+                const safeTitle = q.title ? q.title : 'Câu hỏi tư duy';
+                const safeContent = q.content ? q.content : 'Nội dung đang cập nhật...';
+
+                const card = `
+                    <div class="bg-white rounded-xl p-6 shadow-sm border border-slate-200">
+                        <div class="flex justify-between items-center mb-4">
+                            <span class="bg-[#0C2050] text-white font-bold px-3 py-1 rounded-md text-sm">Câu ${index + 1}</span>
+                            <span class="text-sm text-slate-400 font-medium">${safeTitle}</span>
+                        </div>
+                        <p class="text-slate-800 leading-relaxed text-lg mb-6">${safeContent}</p>
+                        <div class="bg-slate-50 p-4 rounded-lg border border-slate-200 flex items-center">
+                            <label class="font-bold text-slate-700 mr-3">Đáp án:</label>
+                            <input type="text" id="ans_${safeId}" class="w-full md:w-48 border-b-2 border-amber-500 bg-transparent px-2 py-1 text-lg font-bold text-center focus:outline-none focus:bg-white transition" placeholder="Nhập đáp án...">
+                        </div>
+                    </div>
+                `;
+                container.innerHTML += card;
             });
 
-            statusBadge.className = "inline-flex items-center bg-emerald-100 text-emerald-800 text-xs font-bold px-3 py-1 rounded-full";
-            statusBadge.innerHTML = `✅ Kho đề đã sẵn sàng`;
-            selectionArea.classList.remove('opacity-50', 'pointer-events-none');
-            startBtn.removeAttribute('disabled');
-            startBtn.classList.remove('cursor-not-allowed');
-        } catch (error) {
-            statusBadge.className = "inline-flex items-center bg-red-100 text-red-800 text-xs font-bold px-3 py-1 rounded-full";
-            statusBadge.innerHTML = `❌ Lỗi kết nối dữ liệu`;
+            container.classList.remove('hidden');
+            document.getElementById('submitArea').classList.remove('hidden');
+            window.scrollTo({ top: 0, behavior: 'smooth' });
         }
-    };
 
-    function shuffleArray(array) {
-        let shuffled = [...array];
-        for (let i = shuffled.length - 1; i > 0; i--) {
-            const j = Math.floor(Math.random() * (i + 1));
-            [shuffled[i], shuffled[j]] = [shuffled[j], shuffled[i]];
+        function submitTest() {
+            if (!confirm("Con đã hoàn thành và muốn nộp bài chưa?")) return;
+
+            const attemptsData = getAttempts();
+            const newAttemptCount = (attemptsData[currentStudentKey] || 0) + 1;
+            attemptsData[currentStudentKey] = newAttemptCount;
+            saveAttempts(attemptsData);
+
+            let correctCount = 0;
+            const totalQs = currentQuestions.length;
+            let detailsHTML = '';
+
+            currentQuestions.forEach((q, index) => {
+                const safeId = q.id ? q.id : `q_${index}`;
+                const studentAns = document.getElementById(`ans_${safeId}`).value.trim();
+                
+                const allowedAnswers = String(q.correctAnswer).toLowerCase().split(/[,|]/).map(item => item.trim());
+                const isCorrect = allowedAnswers.includes(studentAns.toLowerCase());
+
+                if (isCorrect) correctCount++;
+
+                detailsHTML += `
+                    <div class="p-4 rounded-xl mb-3 ${isCorrect ? 'bg-emerald-50 border border-emerald-200' : 'bg-red-50 border border-red-200'}">
+                        <span class="font-bold ${isCorrect ? 'text-emerald-700' : 'text-red-700'}">Câu ${index + 1}: ${isCorrect ? '✅ CHÍNH XÁC' : '❌ CHƯA CHÍNH XÁC'}</span>
+                        ${!isCorrect ? `<div class="mt-2 text-slate-700"><span class="mr-4">Con chọn: <b class="text-red-600">${studentAns || '(Để trống)'}</b></span> | <span>Đáp án chuẩn: <b class="text-emerald-600">${q.correctAnswer}</b></span></div>` : ''}
+                    </div>
+                `;
+            });
+
+            const scorePercent = (correctCount / totalQs) * 100;
+            
+            let comment = "";
+            if (scorePercent === 100) {
+                comment = "Quá tuyệt vời! Con nắm kiến thức cực kỳ vững chắc. Hãy tiếp tục phát huy phong độ này ở các bài thi tới nhé!";
+            } else if (scorePercent >= 75) {
+                comment = "Con làm rất tốt! Tuy nhiên vẫn còn một chút bất cẩn nhỏ. Con xem lại câu làm sai để rút kinh nghiệm nhé.";
+            } else if (scorePercent >= 50) {
+                comment = "Con đã rất nỗ lực hoàn thành bài. Có vẻ áp lực thời gian làm khó con. Bác cháu ta sẽ ôn tập lại phần này nhé!";
+            } else {
+                comment = "Bài làm hôm nay chưa được như ý, nhưng không sao cả! Ở buổi học tới, Bác Long sẽ hướng dẫn lại con phương pháp suy luận.";
+            }
+
+            document.getElementById('resStudentName').innerText = currentStudentName;
+            document.getElementById('resAttemptCount').innerText = `Lần ${newAttemptCount}`;
+            document.getElementById('resScore').innerText = `${correctCount}/${totalQs} (${scorePercent.toFixed(0)}%)`;
+            document.getElementById('resComment').innerText = comment;
+            document.getElementById('resDetails').innerHTML = detailsHTML;
+
+            document.getElementById('submitArea').classList.add('hidden');
+            document.getElementById('questionContainer').classList.add('hidden');
+            document.getElementById('resultArea').classList.remove('hidden');
+            window.scrollTo({ top: 0, behavior: 'smooth' });
         }
-        return shuffled;
-    }
-
-    function getAttempts() {
-        const data = localStorage.getItem('bac_long_attempts');
-        return data ? JSON.parse(data) : {};
-    }
-
-    function saveAttempts(data) {
-        localStorage.setItem('bac_long_attempts', JSON.stringify(data));
-    }
-
-    function startTest() {
-        const nameInput = document.getElementById('studentNameInput').value.trim();
-        if (!nameInput) { alert("Vui lòng nhập tên của con!"); return; }
-
-        currentStudentName = nameInput;
-        currentStudentKey = nameInput.toLowerCase().replace(/\s+/g, '_');
-        const qCount = parseInt(document.getElementById('questionCountSelect').value);
-
-        currentQuestions = shuffleArray(onlineQuestionBank).slice(0, Math.min(qCount, onlineQuestionBank.length));
-
-        document.getElementById('selectionArea').classList.add('hidden');
-        const container = document.getElementById('questionContainer');
-        container.innerHTML = ''; 
-
-        currentQuestions.forEach((q, index) => {
-            const safeId = q.id ? q.id : (index + 1);
-            const safeTitle = q.title ? q.title : 'Câu hỏi tư duy';
-            const safeContent = q.content ? q.content : 'Nội dung đang cập nhật...';
-
-            const card = `
-                <div class="bg-white rounded-2xl p-6 shadow-sm border border-slate-200">
-                    <div class="flex justify-between items-center mb-3">
-                        <span class="bg-[#0C2050] text-white font-bold px-3 py-0.5 rounded-lg text-xs font-mono">Câu ${index + 1}</span>
-                        <span class="text-xs text-slate-400 font-medium">${safeTitle}</span>
-                    </div>
-                    
-                    <p class="text-slate-800 leading-relaxed text-base mb-5 font-medium">${safeContent}</p>
-
-                    <div class="bg-slate-50 p-3 rounded-xl border border-slate-200 flex flex-col sm:flex-row items-center gap-2">
-                        <label class="font-bold text-slate-700 text-sm">Đáp án:</label>
-                        <input type="text" id="ans_${safeId}" class="w-full sm:w-48 border-2 border-amber-300 bg-white px-3 py-1.5 rounded-xl font-bold text-center focus:outline-none focus:border-amber-500" placeholder="Nhập đáp án...">
-                    </div>
-                </div>
-            `;
-            container.innerHTML += card;
-        });
-
-        container.classList.remove('hidden');
-        document.getElementById('submitArea').classList.remove('hidden');
-        window.scrollTo({ top: document.getElementById('luyentap').offsetTop - 20, behavior: 'smooth' });
-    }
-
-    function submitTest() {
-        if (!confirm("Con đã hoàn thành và muốn nộp bài chưa?")) return;
-
-        const attemptsData = getAttempts();
-        const newAttemptCount = (attemptsData[currentStudentKey] || 0) + 1;
-        attemptsData[currentStudentKey] = newAttemptCount;
-        saveAttempts(attemptsData);
-
-        let correctCount = 0;
-        let detailsHTML = '';
-
-        currentQuestions.forEach((q, index) => {
-            const safeId = q.id ? q.id : (index + 1);
-            const studentAns = document.getElementById(`ans_${safeId}`).value.trim();
-            const allowedAnswers = String(q.correctAnswer).toLowerCase().split(/[,|]/).map(item => item.trim());
-            const isCorrect = allowedAnswers.includes(studentAns.toLowerCase());
-
-            if (isCorrect) correctCount++;
-
-            detailsHTML += `
-                <div class="p-3 rounded-xl text-sm ${isCorrect ? 'bg-emerald-50 border border-emerald-200 text-emerald-800' : 'bg-red-50 border border-red-200 text-red-800'}">
-                    <b>Câu ${index + 1}:</b> ${isCorrect ? '✅ Đúng' : `❌ Sai (Con chọn: <b>${studentAns || 'Trống'}</b> | Đáp án chuẩn: <b>${q.correctAnswer}</b>)`}
-                </div>
-            `;
-        });
-
-        const scorePercent = (correctCount / currentQuestions.length) * 100;
-        document.getElementById('resStudentName').innerText = currentStudentName;
-        document.getElementById('resAttemptCount').innerText = `Lần ${newAttemptCount}`;
-        document.getElementById('resScore').innerText = `${correctCount}/${currentQuestions.length} (${scorePercent.toFixed(0)}%)`;
-        document.getElementById('resComment').innerText = scorePercent === 100 ? "Tuyệt vời! Con làm đúng tuyệt đối." : "Con đã cố gắng, hãy xem lại các câu chưa chính xác nhé!";
-        document.getElementById('resDetails').innerHTML = detailsHTML;
-
-        document.getElementById('submitArea').classList.add('hidden');
-        document.getElementById('questionContainer').classList.add('hidden');
-        document.getElementById('resultArea').classList.remove('hidden');
-        window.scrollTo({ top: document.getElementById('luyentap').offsetTop - 20, behavior: 'smooth' });
-    }
-</script>
+    </script>
 </body>
 </html>
